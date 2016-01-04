@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "mvp.gjj.gjj_mvp_basedemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':androidbaselib')
+
+    compile 'com.android.support:design:'+ rootProject.ext.appcompat7Version
+    compile 'com.android.support:recyclerview-v7:'+ rootProject.ext.recyclerviewVersion
+    compile 'com.android.support:appcompat-v7:' + rootProject.ext.appcompat7Version
+
+    compile 'com.jakewharton:butterknife:'+rootProject.ext.butterknifeVersion
+    //圆形图片库
+    compile 'com.makeramen:roundedimageview:2.0.1'
+    //图片加载
+    compile 'com.squareup.picasso:picasso:'+rootProject.ext.picassoVersion
+    //网络请求
+    compile 'com.squareup.retrofit:retrofit:'+rootProject.ext.retrofitVersion
+    compile 'com.squareup.okhttp:okhttp:'+rootProject.ext.okhttpVersion
+}

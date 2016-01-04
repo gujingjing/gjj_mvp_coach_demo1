@@ -1,0 +1,1 @@
+include ':app', ':gjj_mvp_basedemo', ':androidbaselib', ':mvp', ':mvp-common'

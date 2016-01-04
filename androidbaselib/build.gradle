@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':mvp')
+    //retrofit网络包
+    compile 'com.squareup.retrofit:retrofit:'+ rootProject.ext.retrofitVersion
+    compile 'com.squareup.okhttp:okhttp:'+ rootProject.ext.okhttpVersion
+    compile 'com.squareup.picasso:picasso:'+ rootProject.ext.picassoVersion
+//    //RxJava Integration with CallAdapter 它将作为Observable返回
+    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta1'
+    compile 'io.reactivex:rxandroid:1.0.1'
+//    //retrofit 接收json 结果并解析成DAO
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
+    compile 'io.reactivex:rxjava:1.0.14'
+}

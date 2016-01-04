@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_table_item"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_alignParentBottom="true">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@mipmap/first_line" />
+    <RadioGroup
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:weightSum="4">
+        <RadioButton
+            android:id="@+id/me_0"
+            style="@style/main_tab_bottom"
+            android:checked="true"
+            android:drawableTop="@drawable/zonghe_selector"
+            android:tag="0"
+            android:text="综合" />
+        <RadioButton
+            android:id="@+id/me_1"
+            style="@style/main_tab_bottom"
+            android:drawableTop="@drawable/danmu_selector"
+            android:tag="1"
+            android:text="弹幕" />
+
+        <RadioButton
+            android:id="@+id/me_2"
+            style="@style/main_tab_bottom"
+            android:drawableTop="@drawable/find_selector"
+            android:tag="2"
+            android:text="发现" />
+        <RadioButton
+            android:id="@+id/me_3"
+            style="@style/main_tab_bottom"
+            android:drawableTop="@drawable/me_selector"
+            android:tag="3"
+            android:text="我" />
+    </RadioGroup>
+</LinearLayout>
