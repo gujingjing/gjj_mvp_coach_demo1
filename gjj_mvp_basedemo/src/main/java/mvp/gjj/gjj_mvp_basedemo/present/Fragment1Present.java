@@ -1,8 +1,7 @@
 package mvp.gjj.gjj_mvp_basedemo.present;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
+import java.util.logging.Handler;
 
 import mvp.gjj.androidbaselib.base.BasePresenter;
 import mvp.gjj.gjj_mvp_basedemo.view.Fragment1View;
@@ -19,5 +18,13 @@ public class Fragment1Present extends BasePresenter<Fragment1View> {
     /**
      * 请求网络操作
      */
-
+    public void loadData(boolean pullToRefresh){
+        getView().showLoading(pullToRefresh);
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getView().showContent();
+            }
+        }, 5000);
+    }
 }
