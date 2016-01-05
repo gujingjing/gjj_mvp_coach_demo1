@@ -90,7 +90,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
                 BaseFragment fragment = FragmentFactory.createFragment(Integer.parseInt(page));
                 //setCurrentItem第二个参数true,表示页面划过去,false 不划过去
                 viewpager.setCurrentItem(Integer.parseInt(page), true);
-                fragment.loadData(false);//点击了就重新显示数据
+//                fragment.loadData(false);//点击了就重新显示数据
             }
         });
         loadData(false);

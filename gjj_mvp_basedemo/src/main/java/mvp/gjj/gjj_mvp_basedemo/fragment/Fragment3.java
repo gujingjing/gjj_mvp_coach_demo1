@@ -34,14 +34,15 @@ public class Fragment3 extends BaseFragment<TextView, EmptyModel, EmptyFragmentV
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.empty_fragment, null);
-        return view;
+//        View view = inflater.inflate(R.layout.empty_fragment, null);
+        return inflater.inflate(R.layout.empty_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        loadData(false);
     }
 
     @Override
