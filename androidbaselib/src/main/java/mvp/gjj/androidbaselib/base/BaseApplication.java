@@ -14,18 +14,13 @@ import mvp.gjj.androidbaselib.tools.NetWorkUtil;
  * 邮箱：Gujj512@163.com
  */
 public class BaseApplication extends Application {
-    private static BaseApplication applicationContext;
     private NetChangeObserver mNetChangeObserver;
     public Activity mCurrentActivity;
     @Override
     public void onCreate() {
         super.onCreate();
-        applicationContext=this;
         initLogUtils();
         registerNetWorkStateListener();// 注册网络状态监测器
-    }
-    public static BaseApplication getApplication(){
-        return applicationContext;
     }
     private void initLogUtils() {
         // 配置日志是否输出(默认true)
