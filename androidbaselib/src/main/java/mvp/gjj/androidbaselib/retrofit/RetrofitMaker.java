@@ -1,14 +1,14 @@
 package mvp.gjj.androidbaselib.retrofit;
 
-import android.util.Log;
-
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import mvp.gjj.androidbaselib.tools.LogUtils;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
@@ -49,10 +49,10 @@ public class RetrofitMaker {
                 Request request = chain.request();
                 if (!token.equals("")) {
                     request=request.newBuilder().addHeader("Authorization", token).build();
-                    Log.e("Authorization===", token);//输出requestUrl
                 }
-                Log.e("requestUrl===", request.urlString());//输出requestUrl
-                Log.e("addHeader===", request.headers().toString());//输出requestUrl
+                LogUtils.e("requestUrl==="+request.urlString());//输出requestUrl
+                LogUtils.e("requestHeader==="+request.headers().toString());//输出requestUrl
+                LogUtils.e("requestBody==="+request.body());//输出request请求内容
                 return chain.proceed(request);
             }
         });

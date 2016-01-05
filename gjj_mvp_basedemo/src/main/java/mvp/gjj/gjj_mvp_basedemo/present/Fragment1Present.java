@@ -25,6 +25,6 @@ public class Fragment1Present extends BasePresenter<Fragment1View> {
             public void run() {
                 getView().showContent();
             }
-        }, 5000);
+        }, 3000);
     }
 }

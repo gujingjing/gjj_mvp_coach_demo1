@@ -7,7 +7,7 @@
     <include layout="@layout/loading_view" />
     <include layout="@layout/error_view" />
     <TextView
-        android:id="@+id/tv_test"
+        android:id="@+id/contentView"
         android:text="android test"
         android:textSize="20sp"
         android:padding="10dp"

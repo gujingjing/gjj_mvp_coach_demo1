@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="mvp.gjj.gjj_mvp_basedemo.MainActivity">
 
+    <include layout="@layout/loading_view" />
+    <include layout="@layout/error_view" />
     <mvp.gjj.androidbaselib.view.MyViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/contentView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="10"
@@ -17,4 +20,4 @@
 
     <include layout="@layout/main_table_item"/>
 
-</LinearLayout>
+</FrameLayout>

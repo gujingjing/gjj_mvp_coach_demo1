@@ -158,7 +158,7 @@ public class SharedPrefsUtil {
 			spEdit.putString(key, strObj);
 			spEdit.commit();
 		} catch (IOException e) {
-			LogUtil.e("IOException",e.toString());
+			LogUtils.e("IOException",e);
 		}
 	}
 
@@ -177,7 +177,7 @@ public class SharedPrefsUtil {
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return ois.readObject();
 		} catch (Exception e) {
-			LogUtil.e("Exception", e.toString());
+			LogUtils.e("IOException",e);
 		}
 		return null;
 	}

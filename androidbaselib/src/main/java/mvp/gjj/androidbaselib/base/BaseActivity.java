@@ -10,6 +10,8 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 import mvp.gjj.androidbaselib.R;
+import mvp.gjj.androidbaselib.tools.NetWorkUtil;
+import mvp.gjj.androidbaselib.tools.ToastUtils;
 import mvp.gjj.androidbaselib.view.finishClassView.SwipeBackLayout;
 
 /**
@@ -20,7 +22,7 @@ public abstract class BaseActivity <CV extends View, M, V extends MvpLceView<M>,
         extends MvpLceActivity<CV,M,V,P> implements MvpLceView<M>{
 
         protected SwipeBackLayout layout;
-        private BaseActivity context;
+        public BaseActivity context;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,6 @@ public abstract class BaseActivity <CV extends View, M, V extends MvpLceView<M>,
          * 是否需要右滑删除界面
          */
         public abstract boolean finiActivity();
-
         @Override
         public void finish(){
                 super.finish();
@@ -55,5 +56,17 @@ public abstract class BaseActivity <CV extends View, M, V extends MvpLceView<M>,
         public void onBackPressed() {
                 super.onBackPressed();
                 overridePendingTransition(0, R.anim.base_slide_right_out);
+        }
+        /**
+         * 当没有网络的时候
+         */
+        public void onDisConnect() {
+                ToastUtils.setToastLong(context,"暂时没有网络,请稍后重试");
+        }
+        /**
+         * 当网络连接的时候
+         */
+        public void onConnect(NetWorkUtil.NetType type){
+                ToastUtils.setToastLong(context,"网络已经连接");
         }
 }

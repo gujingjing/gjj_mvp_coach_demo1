@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -25,10 +25,17 @@ import mvp.gjj.gjj_mvp_basedemo.view.Fragment2View;
  */
 public class Fragment2 extends BaseFragment<TextView, List<FragmentModel>, Fragment2View, Fragment2Present> implements Fragment2View {
 
+    @Bind(R.id.loadingView)
+    ProgressBar loadingView;
+    @Bind(R.id.errorView)
+    TextView errorView;
+    @Bind(R.id.contentView)
+    TextView tvTest;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.empt, container);
+        return inflater.inflate(R.layout.empt, null);
     }
 
     @Override
@@ -39,7 +46,7 @@ public class Fragment2 extends BaseFragment<TextView, List<FragmentModel>, Fragm
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        ButterKnife.bind(this, view);
         loadData(false);
     }
 
@@ -68,5 +75,6 @@ public class Fragment2 extends BaseFragment<TextView, List<FragmentModel>, Fragm
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

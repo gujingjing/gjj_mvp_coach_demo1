@@ -25,7 +25,7 @@ import mvp.gjj.gjj_mvp_basedemo.fragment.Fragment2;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.viewpager)
+    @Bind(R.id.contentView)
     MyViewPager viewpager;
     @Bind(R.id.me_0)
     RadioButton me0;
