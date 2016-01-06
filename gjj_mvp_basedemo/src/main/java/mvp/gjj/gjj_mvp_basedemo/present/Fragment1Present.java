@@ -27,4 +27,7 @@ public class Fragment1Present extends BasePresenter<Fragment1View> {
             }
         }, 3000);
     }
+    public void refreshView(){
+
+    }
 }

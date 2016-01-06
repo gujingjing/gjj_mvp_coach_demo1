@@ -2,7 +2,8 @@ package mvp.gjj.gjj_mvp_basedemo.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
+
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mvp.gjj.androidbaselib.base.BaseFragment;
-import mvp.gjj.androidbaselib.tools.ToastUtils;
 import mvp.gjj.gjj_mvp_basedemo.R;
 import mvp.gjj.gjj_mvp_basedemo.model.FragmentModel;
 import mvp.gjj.gjj_mvp_basedemo.present.Fragment1Present;
@@ -25,15 +28,15 @@ import mvp.gjj.gjj_mvp_basedemo.view.Fragment1View;
  * 作者：gjj on 2016/1/4 17:43
  * 邮箱：Gujj512@163.com
  */
-public class Fragment1 extends BaseFragment<SwipeRefreshLayout, List<FragmentModel>, Fragment1View, Fragment1Present> implements Fragment1View {
-    @Bind(R.id.loadingView)
-    ProgressBar loadingView;
+public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<FragmentModel>, Fragment1View, Fragment1Present> implements Fragment1View {
     @Bind(R.id.errorView)
     TextView errorView;
+    @Bind(R.id.loadingView)
+    ProgressBar loadingView;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     @Bind(R.id.contentView)
-    SwipeRefreshLayout contentView;
+    MaterialRefreshLayout contentView;
 
     @Nullable
     @Override
@@ -44,14 +47,51 @@ public class Fragment1 extends BaseFragment<SwipeRefreshLayout, List<FragmentMod
     }
 
     @Override
-    public Fragment1Present createPresenter() {
-        return new Fragment1Present(getActivity());
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        initRefresh();
         loadData(false);//第一次显示数据
+    }
+
+    public void initRefresh() {
+        initRecyleViewRefresh();
+        initMatrRefresh();
+    }
+    public void initRecyleViewRefresh(){
+        /**recelview的设置*/
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+
+
+    }
+    public void initMatrRefresh(){
+        /**MaterialRefreshLayout的设置*/
+        contentView.setLoadMore(true);//是否允许加载更多
+        contentView.finishRefreshLoadMore();
+        contentView.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {//下拉
+                presenter.refreshView();
+            }
+            @Override
+            public void onfinish() {//关闭刷新状态
+                super.onfinish();
+                contentView.finishRefresh();
+                contentView.finishRefreshLoadMore();
+            }
+
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {//加载更多
+                super.onRefreshLoadMore(materialRefreshLayout);
+                presenter.refreshView();
+            }
+        });
+    }
+    @Override
+    public Fragment1Present createPresenter() {
+        return new Fragment1Present(getActivity());
     }
 
     @Override
@@ -72,7 +112,7 @@ public class Fragment1 extends BaseFragment<SwipeRefreshLayout, List<FragmentMod
     @Override
     public void showContent() {
         super.showContent();
-//        ToastUtils.setToastLong(getActivity(), "显示数据成功-----");
+
     }
 
     @Override
