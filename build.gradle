@@ -34,6 +34,7 @@ ext {
     appcompat7Version = '23.1.1'
     supportAnnotations = '23.1.1'
     recyclerviewVersion = '23.1.1'
+    cardViewVersion='23.+'
 
     // Libraries for samples
     fragmentargsVersion = '2.1.0'

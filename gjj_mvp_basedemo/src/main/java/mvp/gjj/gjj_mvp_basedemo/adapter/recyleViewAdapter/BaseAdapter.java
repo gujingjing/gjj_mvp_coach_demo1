@@ -93,15 +93,15 @@ public abstract class BaseAdapter<ItemDataType> extends
         return mItemDataList.size();
     }
     @Override
-    public void onBindViewHolder( BaseViewHolder viewHolder,final  int i) {
-        onViewShow(viewHolder, i, mItemDataList);
+    public void onBindViewHolder( BaseViewHolder viewHolder,final  int position) {
+        onViewShow(viewHolder, position, mItemDataList);
         viewHolder.getView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != onItemClcikListener) {
                     long cl = System.currentTimeMillis();
                     if (cl - lastClickTime > clickTime) {
-                        onItemClcikListener.onClick(v, i);
+                        onItemClcikListener.onClick(v, position);
                         lastClickTime = clickTime;
                     }
                 }

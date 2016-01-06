@@ -19,8 +19,12 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mvp.gjj.androidbaselib.base.BaseFragment;
+import mvp.gjj.androidbaselib.tools.ToastUtils;
 import mvp.gjj.gjj_mvp_basedemo.R;
+import mvp.gjj.gjj_mvp_basedemo.adapter.RecyleViewNomalAdapter;
+import mvp.gjj.gjj_mvp_basedemo.adapter.recyleViewAdapter.OnItemClickListener;
 import mvp.gjj.gjj_mvp_basedemo.model.FragmentModel;
+import mvp.gjj.gjj_mvp_basedemo.model.RecyleModel;
 import mvp.gjj.gjj_mvp_basedemo.present.Fragment1Present;
 import mvp.gjj.gjj_mvp_basedemo.view.Fragment1View;
 
@@ -28,7 +32,7 @@ import mvp.gjj.gjj_mvp_basedemo.view.Fragment1View;
  * 作者：gjj on 2016/1/4 17:43
  * 邮箱：Gujj512@163.com
  */
-public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<FragmentModel>, Fragment1View, Fragment1Present> implements Fragment1View {
+public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<RecyleModel>, Fragment1View, Fragment1Present> implements Fragment1View {
     @Bind(R.id.errorView)
     TextView errorView;
     @Bind(R.id.loadingView)
@@ -38,6 +42,7 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<Fragment
     @Bind(R.id.contentView)
     MaterialRefreshLayout contentView;
 
+    private RecyleViewNomalAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,22 +54,31 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<Fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        initRefresh();
+        contentView.setLoadMore(false);
+        adapter=new RecyleViewNomalAdapter(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                ToastUtils.setToastShot(getActivity(),"第"+position+"个item");
+            }
+        });
+//        initRefresh();
         loadData(false);//第一次显示数据
     }
 
     public void initRefresh() {
-        initRecyleViewRefresh();
         initMatrRefresh();
+        initRecyleViewRefresh();
     }
     public void initRecyleViewRefresh(){
         /**recelview的设置*/
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(OrientationHelper.VERTICAL);
+//        manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(manager);
-
-
+        adapter=new RecyleViewNomalAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
     }
     public void initMatrRefresh(){
         /**MaterialRefreshLayout的设置*/
@@ -73,7 +87,7 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<Fragment
         contentView.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {//下拉
-                presenter.refreshView();
+                presenter.refreshView(true);
             }
             @Override
             public void onfinish() {//关闭刷新状态
@@ -85,7 +99,7 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<Fragment
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {//加载更多
                 super.onRefreshLoadMore(materialRefreshLayout);
-                presenter.refreshView();
+                presenter.refreshView(true);
             }
         });
     }
@@ -100,8 +114,9 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<Fragment
     }
 
     @Override
-    public void setData(List<FragmentModel> data) {
-
+    public void setData(List<RecyleModel> data) {
+        adapter.replaceAllData(data);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -112,7 +127,8 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<Fragment
     @Override
     public void showContent() {
         super.showContent();
-
+        contentView.finishRefresh();
+        contentView.finishRefreshLoadMore();
     }
 
     @Override

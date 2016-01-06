@@ -50,13 +50,13 @@ public class MyViewPager extends ViewPager {
             return super.onInterceptTouchEvent(arg0);
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if(noScroll)
-            return true;//设置为不拦截事件，向下分发
-        else
-        return super.dispatchTouchEvent(ev);
-    }
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        if(noScroll)
+//            return true;//设置为拦截事件，不向下分发
+//        else
+//        return super.dispatchTouchEvent(ev);
+//    }
 
     @Override
     public void setCurrentItem(int item, boolean smoothScroll) {

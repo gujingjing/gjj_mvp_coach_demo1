@@ -32,7 +32,10 @@ public class RecyleModel implements Parcelable {
 
     public RecyleModel() {
     }
-
+    public RecyleModel(String text,String imageUrl) {
+        this.text=text;
+        this.imageUrl=imageUrl;
+    }
     protected RecyleModel(Parcel in) {
         this.text = in.readString();
         this.imageUrl = in.readString();

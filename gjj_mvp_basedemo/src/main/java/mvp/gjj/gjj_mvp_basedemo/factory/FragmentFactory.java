@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import mvp.gjj.androidbaselib.base.BaseFragment;
 import mvp.gjj.gjj_mvp_basedemo.fragment.Fragment1;
+import mvp.gjj.gjj_mvp_basedemo.fragment.Fragment1_Copy;
 import mvp.gjj.gjj_mvp_basedemo.fragment.Fragment2;
 import mvp.gjj.gjj_mvp_basedemo.fragment.Fragment3;
 
@@ -17,10 +18,10 @@ public class FragmentFactory {
 		}else{
 			switch (arg0) {
 			case 0:
-				baseFragment = new Fragment3();
+				baseFragment = new Fragment1();
 				break;
 			case 1:
-				baseFragment = new Fragment3();
+				baseFragment = new Fragment1_Copy();
 				break;
 			case 2:
 				baseFragment = new Fragment3();
