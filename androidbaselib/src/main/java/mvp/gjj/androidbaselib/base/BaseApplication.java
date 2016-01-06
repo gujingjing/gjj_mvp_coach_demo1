@@ -21,6 +21,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         initLogUtils();
         registerNetWorkStateListener();// 注册网络状态监测器
+
     }
     private void initLogUtils() {
         // 配置日志是否输出(默认true)
@@ -37,7 +38,7 @@ public class BaseApplication extends Application {
                 try {
                     BaseApplication.this.onConnect(type);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    LogUtils.e("网络监听异常===",e);
                 }
             }
 

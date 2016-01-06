@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import mvp.gjj.androidbaselib.base.BaseActivity;
 import mvp.gjj.androidbaselib.base.BaseFragment;
 import mvp.gjj.androidbaselib.manager.AppManager;
+import mvp.gjj.androidbaselib.netstate.NetworkStateReceiver;
 import mvp.gjj.androidbaselib.tools.LogUtils;
 import mvp.gjj.androidbaselib.tools.ToastUtils;
 import mvp.gjj.androidbaselib.view.MyViewPager;
@@ -68,6 +69,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        NetworkStateReceiver.registerNetworkStateReceiver(context);
         initFragment();
         adapter=new MainFragmentAdapter(getSupportFragmentManager(),fragments);
 
@@ -170,12 +172,16 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-                finish();
-                System.exit(0);
-//                AppManager.getAppManager().AppExit(context);
+                AppManager.getAppManager().AppExit(context);
             }
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NetworkStateReceiver.unRegisterNetworkStateReceiver(context);
     }
 }

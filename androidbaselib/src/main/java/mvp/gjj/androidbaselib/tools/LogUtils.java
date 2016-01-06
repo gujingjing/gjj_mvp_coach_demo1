@@ -21,10 +21,10 @@ import java.util.Locale;
  */
 public class LogUtils {
 
-	public static String customTagPrefix = "lt"; // 自定义Tag的前缀
+	public static String customTagPrefix = "gjj-"; // 自定义Tag的前缀
 	private static final boolean isSaveLog = false; // 是否把保存日志到SD卡中
 	public static final String ROOT = Environment.getExternalStorageDirectory()
-			.getPath() + "/lt_log/"; // SD卡中的根目录
+			.getPath() + "/gjj_log/"; // SD卡中的根目录
 	private static final String PATH_LOG_INFO = ROOT + "info/";
 
 	private LogUtils() {

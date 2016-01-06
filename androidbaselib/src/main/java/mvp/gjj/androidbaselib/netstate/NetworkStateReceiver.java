@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 
 import java.util.ArrayList;
 
+import mvp.gjj.androidbaselib.tools.LogUtils;
 import mvp.gjj.androidbaselib.tools.NetWorkUtil;
 
 
@@ -108,7 +109,6 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 	}
 
 	private void notifyObserver() {
-
 		for (int i = 0; i < netChangeObserverArrayList.size(); i++) {
 			NetChangeObserver observer = netChangeObserverArrayList.get(i);
 			if (observer != null) {
