@@ -42,7 +42,7 @@ public class Fragment1Present extends BasePresenter<Fragment1View> {
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ToastUtils.setToastShot(context,"刷新数据成功");
+//                ToastUtils.setToastShot(context,"刷新数据成功");
                 getView().showContent();
             }
         }, 3000);

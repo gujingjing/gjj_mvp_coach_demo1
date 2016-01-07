@@ -19,6 +19,7 @@ package com.hannesdorfmann.mosby.mvp.lce;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;

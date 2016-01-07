@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.hannesdorfmann.mosby.sample.mvp.lce.activity.CountriesActivity">
 
-
-    <include layout="@layout/error_view" />
-
     <include layout="@layout/loading_view" />
+    <include layout="@layout/error_view" />
 
     <include layout="@layout/base_recyclerview" />
 

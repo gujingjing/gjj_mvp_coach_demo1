@@ -1,6 +1,7 @@
 package mvp.gjj.gjj_mvp_basedemo.present;
 
 import android.content.Context;
+import android.system.ErrnoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,8 @@ public class MainActivityPresent extends BasePresenter<MainActivityView> {
                 MainActivityModel model=new MainActivityModel();
                 model.loginToken=loginToken;
                 getView().setData(model);
-//                getView().showContent();
+                getView().showContent();
+//                getView().showError(new Throwable("测试用的异常"),pullToRefresh);
             }
         });
     }

@@ -41,10 +41,6 @@ import mvp.gjj.gjj_mvp_basedemo.view.MainActivityView;
  */
 public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel, MainActivityView, MainActivityPresent> implements MainActivityView {
 
-    @Bind(R.id.loadingView)
-    ProgressBar loadingView;
-    @Bind(R.id.errorView)
-    TextView errorView;
     @Bind(R.id.contentView)
     MyViewPager viewpager;
     @Bind(R.id.me_0)
@@ -74,13 +70,14 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
         adapter=new MainFragmentAdapter(getSupportFragmentManager(),fragments);
 
         viewpager.setOffscreenPageLimit(fragments.size());//设置每次缓存的次数
-        viewpager.setPageTransformer(true, new ZoomOutPageTransformer());//设置viewpager翻页的动画
-        controlViewPagerSpeed();//设置viewpager滑动速度
+        //
+//        viewpager.setPageTransformer(true, new ZoomOutPageTransformer());//设置viewpager翻页的动画
+//        controlViewPagerSpeed();//设置viewpager滑动速度
         viewpager.setAdapter(adapter);
 
         BaseFragment fragment = FragmentFactory.createFragment(0);
         //setCurrentItem第二个参数true,表示页面划过去,false 不划过去
-        viewpager.setCurrentItem(0, true);
+        viewpager.setCurrentItem(0, false);
 //        fragment.loadData(false);//点击了就重新显示数据
         //radioGroup设置点击事件
         mainSelect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -91,7 +88,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
                 String page = (String) rb.getTag();
                 BaseFragment fragment = FragmentFactory.createFragment(Integer.parseInt(page));
                 //setCurrentItem第二个参数true,表示页面划过去,false 不划过去
-                viewpager.setCurrentItem(Integer.parseInt(page), true);
+                viewpager.setCurrentItem(Integer.parseInt(page), false);
 //                fragment.loadData(false);//点击了就重新显示数据
             }
         });
@@ -117,7 +114,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
     @Override
     public void setData(MainActivityModel data) {
         this.data=data;
-        ToastUtils.setToastLong(context,data.toString());
+//        ToastUtils.setToastLong(context,data.toString());
     }
 
     @Override
@@ -128,7 +125,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
     @Override
     public void showContent() {
         super.showContent();
-        ToastUtils.setToastLong(context, "主界面显示");
+//        ToastUtils.setToastLong(context, "主界面显示");
 //        LogUtils.e(data.toString());
     }
 

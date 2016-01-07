@@ -54,55 +54,31 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<RecyleMo
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        contentView.setLoadMore(false);
+        contentView.setLoadMore(true);
         adapter=new RecyleViewNomalAdapter(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
-                ToastUtils.setToastShot(getActivity(),"第"+position+"个item");
+//                ToastUtils.setToastShot(getActivity(), "第" + position + "个item");
             }
         });
-//        initRefresh();
-        loadData(false);//第一次显示数据
-    }
-
-    public void initRefresh() {
-        initMatrRefresh();
-        initRecyleViewRefresh();
-    }
-    public void initRecyleViewRefresh(){
-        /**recelview的设置*/
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-//        manager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        adapter=new RecyleViewNomalAdapter(getActivity());
-        recyclerView.setAdapter(adapter);
-    }
-    public void initMatrRefresh(){
-        /**MaterialRefreshLayout的设置*/
-        contentView.setLoadMore(true);//是否允许加载更多
-        contentView.finishRefreshLoadMore();
         contentView.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
-            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {//下拉
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
                 presenter.refreshView(true);
-            }
-            @Override
-            public void onfinish() {//关闭刷新状态
-                super.onfinish();
-                contentView.finishRefresh();
-                contentView.finishRefreshLoadMore();
             }
 
             @Override
-            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {//加载更多
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
                 presenter.refreshView(true);
             }
         });
+        loadData(false);//第一次显示数据
     }
+
     @Override
     public Fragment1Present createPresenter() {
         return new Fragment1Present(getActivity());
