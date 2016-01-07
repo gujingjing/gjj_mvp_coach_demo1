@@ -1,10 +1,15 @@
 package mvp.gjj.gjj_mvp_basedemo.fragment;
 
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,7 @@ import android.widget.TextView;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 
@@ -56,8 +62,20 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<RecyleMo
         super.onViewCreated(view, savedInstanceState);
         contentView.setLoadMore(true);
         adapter=new RecyleViewNomalAdapter(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+//        manager.setOrientation(OrientationHelper.HORIZONTAL);
+
+        //gridView--manager第二个参数表示一共有几行
+//        GridLayoutManager mGridLayoutManager = new GridLayoutManager(this, 4);
+        //mGridLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+
+        //StaggeredGridLayoutManager--namager  可以设置为瀑布流效果
+//        StaggeredGridLayoutManager mStaggeredGridLayout = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+
+        setDivider();//设置recyleView分割线
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
@@ -79,6 +97,16 @@ public class Fragment1 extends BaseFragment<MaterialRefreshLayout, List<RecyleMo
         loadData(false);//第一次显示数据
     }
 
+    public void setDivider(){
+        Paint paint = new Paint();
+        paint.setStrokeWidth(2);
+        paint.setColor(Color.GREEN);
+        paint.setAntiAlias(true);
+        paint.setPathEffect(new DashPathEffect(new float[]{25.0f, 25.0f}, 0));
+        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
+                .paint(paint)
+                .build());
+    }
     @Override
     public Fragment1Present createPresenter() {
         return new Fragment1Present(getActivity());

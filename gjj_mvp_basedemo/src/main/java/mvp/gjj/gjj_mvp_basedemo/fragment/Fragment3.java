@@ -68,7 +68,7 @@ public class Fragment3 extends BaseFragment<TextView, EmptyModel, EmptyFragmentV
     @Override
     public void showContent() {
         super.showContent();
-        ToastUtils.setToastShot(getActivity(), data.toString());
+//        ToastUtils.setToastShot(getActivity(), data.toString());
 //        presenter.setTextView();
     }
 

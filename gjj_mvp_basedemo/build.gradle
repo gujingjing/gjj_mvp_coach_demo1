@@ -27,10 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:' + rootProject.ext.appcompat7Version
 
     compile 'com.jakewharton:butterknife:'+rootProject.ext.butterknifeVersion
-    //圆形图片库
-    compile 'com.makeramen:roundedimageview:2.0.1'
-    //图片加载
-    compile 'com.squareup.picasso:picasso:'+rootProject.ext.picassoVersion
     //网络请求
     compile 'com.squareup.retrofit:retrofit:'+rootProject.ext.retrofitVersion
     compile 'com.squareup.okhttp:okhttp:'+rootProject.ext.okhttpVersion
@@ -40,4 +36,6 @@ dependencies {
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
     //圆形图片
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    //加载图片
+    compile 'com.github.bumptech.glide:glide:3.5.2'
 }

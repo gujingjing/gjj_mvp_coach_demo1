@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -29,6 +31,8 @@ import mvp.gjj.androidbaselib.view.viewpagerTools.CubeTransformer;
 import mvp.gjj.androidbaselib.view.viewpagerTools.FixedSpeedScroller;
 import mvp.gjj.androidbaselib.view.viewpagerTools.ZoomOutPageTransformer;
 import mvp.gjj.gjj_mvp_basedemo.adapter.MainFragmentAdapter;
+import mvp.gjj.gjj_mvp_basedemo.demo.PuBuListViewDemoActivity;
+import mvp.gjj.gjj_mvp_basedemo.demo.StagListViewDemoActivity;
 import mvp.gjj.gjj_mvp_basedemo.factory.FragmentFactory;
 import mvp.gjj.gjj_mvp_basedemo.fragment.Fragment1;
 import mvp.gjj.gjj_mvp_basedemo.model.MainActivityModel;
@@ -67,6 +71,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
         ButterKnife.bind(this);
         NetworkStateReceiver.registerNetworkStateReceiver(context);
         initFragment();
+        setToolBar();
         adapter=new MainFragmentAdapter(getSupportFragmentManager(),fragments);
 
         viewpager.setOffscreenPageLimit(fragments.size());//设置每次缓存的次数
@@ -92,6 +97,8 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
 //                fragment.loadData(false);//点击了就重新显示数据
             }
         });
+
+
         loadData(false);
     }
 
@@ -180,5 +187,31 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
     protected void onDestroy() {
         super.onDestroy();
         NetworkStateReceiver.unRegisterNetworkStateReceiver(context);
+    }
+    public void setToolBar(){
+        getSupportActionBar().setTitle("android-mvpDemo");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);   //使左上角图标是否显示
+        // 给左上角图标的左边加上一个返回的图标
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sample, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.stagListViewDemoActivity:
+                gotoActivity(StagListViewDemoActivity.class,false);
+                return true;
+            case R.id.puBuListViewDemoActivity:
+                gotoActivity(PuBuListViewDemoActivity.class,false);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

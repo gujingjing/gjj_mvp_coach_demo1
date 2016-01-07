@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/stagListViewDemoActivity"
+        android:title="StagListViewDemoActivity"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/puBuListViewDemoActivity"
+        android:title="puBuListViewDemoActivity"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_gridlayout"
+        android:title=""
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_staggeredgridlayout"
+        android:title=""
+        app:showAsAction="never"/>
+
+</menu>
