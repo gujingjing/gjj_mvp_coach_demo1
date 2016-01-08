@@ -1,4 +1,4 @@
-package mvp.gjj.androidbaselib.tools;
+package mvp.gjj.androidbaselib.cash.spCash;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,17 +11,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Set;
 
+import mvp.gjj.androidbaselib.tools.LogUtils;
+
 /**
  * SharedPreferences封装类
  */
 public class SharedPrefsUtil {
-	//共享文件
-	public static final String SHARE_NAME = "sharePrefer_gjj";
-	static SharedPreferences sp = null;
 
+	static SharedPreferences sp = null;
+	public static  String SHARE_SP_NAME = "sharePrefer";
 	public static SharedPreferences getSp(Context context) {
 		if (sp == null) {
-			sp = context.getSharedPreferences(SHARE_NAME, 0);
+			sp = context.getSharedPreferences(SHARE_SP_NAME, 0);
 		}
 		return sp;
 	}
@@ -158,7 +159,7 @@ public class SharedPrefsUtil {
 			spEdit.putString(key, strObj);
 			spEdit.commit();
 		} catch (IOException e) {
-			LogUtils.e("IOException",e);
+			LogUtils.e("SharedPreferenc save object exception===",e);
 		}
 	}
 
@@ -177,7 +178,7 @@ public class SharedPrefsUtil {
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return ois.readObject();
 		} catch (Exception e) {
-			LogUtils.e("IOException",e);
+			LogUtils.e("SharedPreferenc get object exception===", e);
 		}
 		return null;
 	}

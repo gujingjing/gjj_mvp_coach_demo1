@@ -36,6 +36,8 @@ dependencies {
     //    //retrofit 接收json 结果并解析成DAO
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
     compile 'io.reactivex:rxjava:1.0.14'
-    //viewpager的一些工具方法----需要导入jar包
+    //viewpager的一些工具方法----需要导入jar包--viewpager跳转速度
     compile files('libs/nineoldandroids-2.4.0.jar')
+    //disklrucache缓存处理包
+    compile 'com.jakewharton:disklrucache:2.0.2'
 }

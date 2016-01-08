@@ -3,6 +3,7 @@ package mvp.gjj.androidbaselib.base;
 import android.app.Activity;
 import android.app.Application;
 
+import mvp.gjj.androidbaselib.cash.spCash.SharedPrefsUtil;
 import mvp.gjj.androidbaselib.manager.AppManager;
 import mvp.gjj.androidbaselib.netstate.NetChangeObserver;
 import mvp.gjj.androidbaselib.netstate.NetworkStateReceiver;
@@ -20,8 +21,13 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initLogUtils();
+        initSPUtils();
         registerNetWorkStateListener();// 注册网络状态监测器
 
+    }
+    private void initSPUtils(){
+        //初始化配置sp文件
+        SharedPrefsUtil.SHARE_SP_NAME="gjj_shareSP";
     }
     private void initLogUtils() {
         // 配置日志是否输出(默认true)
