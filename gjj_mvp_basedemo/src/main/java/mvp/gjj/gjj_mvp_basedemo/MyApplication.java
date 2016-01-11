@@ -1,5 +1,7 @@
 package mvp.gjj.gjj_mvp_basedemo;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import mvp.gjj.androidbaselib.base.BaseApplication;
 
 /**
@@ -10,6 +12,7 @@ public class MyApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        //初始化内存泄漏
+        LeakCanary.install(this);
     }
 }
