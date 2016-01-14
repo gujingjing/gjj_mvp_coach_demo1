@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import mvp.gjj.androidbaselib.base.BaseActivity;
 import mvp.gjj.androidbaselib.base.BaseFragment;
+import mvp.gjj.androidbaselib.cash.diskLruCash.DiskLruCacheHelper;
 import mvp.gjj.androidbaselib.manager.AppManager;
 import mvp.gjj.androidbaselib.netstate.NetworkStateReceiver;
 import mvp.gjj.androidbaselib.tools.LogUtils;
@@ -64,11 +66,19 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
     FixedSpeedScroller mScroller = null;
     MainActivityModel data;
     private long exitTime = 0;
+    private DiskLruCacheHelper diskLruCacheHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        try {
+            diskLruCacheHelper = new DiskLruCacheHelper(context);
+            diskLruCacheHelper.put("gjj==","fdsfdiskLruCacheHelperdsf=====测试");
+            ToastUtils.setToastLong(context,diskLruCacheHelper.getAsString("gjj=="));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         NetworkStateReceiver.registerNetworkStateReceiver(context);
         initFragment();
         setToolBar();

@@ -6,8 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.util.Log;
 
-import com.jakewharton.disklrucache.DiskLruCache;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,18 +22,42 @@ import java.io.OutputStreamWriter;
 import java.io.Serializable;
 
 /**
- * Created by zhy on 15/7/28.
+ * gjj-https://github.com/hongyangAndroid/base-diskcache
+ *  注意：
+ *  1.需要初始化创建这个对象
+ *  2.结束的时候需要close
+ * diskLruCacheHelper = new DiskLruCacheHelper(context);
+ * helper.close();
+ *  ------------------------------存-------------------------------------------
+ put(String key, Bitmap bitmap)
+ put(String key, byte[] value)
+ put(String key, String value)
+ put(String key, JSONObject jsonObject)
+ put(String key, JSONArray jsonArray)
+ put(String key, Serializable value)
+ put(String key, Drawable value)
+ editor(String key).newOutputStream(0);//原有的方式
+
+ ------------------------------取-------------------------------------------
+ String getAsString(String key);
+ JSONObject getAsJson(String key)
+ JSONArray getAsJSONArray(String key)
+ <T> T getAsSerializable(String key)
+ Bitmap getAsBitmap(String key)
+ byte[] getAsBytes(String key)
+ Drawable getAsDrawable(String key)
+ InputStream get(String key);//原有的用法
  */
 public class DiskLruCacheHelper
 {
-    private static final String DIR_NAME = "gjj_diskCache";
+    private static final String DIR_NAME = "diskCache";
     private static final int MAX_COUNT = 5 * 1024 * 1024;
     private static final int DEFAULT_APP_VERSION = 1;
-
-    /**
-     * The default valueCount when open DiskLruCache.
-     */
-    private static final int DEFAULT_VALUE_COUNT = 1;
+	
+	/**
+	* The default valueCount when open DiskLruCache.
+	*/
+	private static final int DEFAULT_VALUE_COUNT = 1;
 
     private static final String TAG = "DiskLruCacheHelper";
 
@@ -80,7 +102,7 @@ public class DiskLruCacheHelper
                     dir + " is not a directory or does not exists. ");
         }
 
-        int appVersion = context == null ? DEFAULT_APP_VERSION :Utils.getAppVersion(context);
+        int appVersion = context == null ? DEFAULT_APP_VERSION : Utils.getAppVersion(context);
 
         DiskLruCache diskLruCache = DiskLruCache.open(
                 dir,

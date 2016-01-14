@@ -2,9 +2,12 @@ package mvp.gjj.androidbaselib.base;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
@@ -12,6 +15,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 import mvp.gjj.androidbaselib.R;
 import mvp.gjj.androidbaselib.manager.AppManager;
+import mvp.gjj.androidbaselib.manager.SystemBarTintManager;
 import mvp.gjj.androidbaselib.netstate.NetworkStateReceiver;
 import mvp.gjj.androidbaselib.tools.LogUtils;
 import mvp.gjj.androidbaselib.tools.NetWorkUtil;
@@ -31,16 +35,28 @@ public abstract class BaseActivity<CV extends View, M, V extends MvpLceView<M>, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStateBarColor(R.color.demo_color);//设置最顶部标题栏颜色
         context = this;
         AppManager.getAppManager().addActivity(this);
-        NetworkStateReceiver.registerNetworkStateReceiver(this);//注册全局监听网络状态的观察者
         if (finiActivity()) {
             //是否需要滑动消除界面的主要代码
             layout = (SwipeBackLayout) LayoutInflater.from(this).inflate(
                     R.layout.activity_base, null);
             layout.attachToActivity(this);
         }
-
+    }
+    protected void setStateBarColor(int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window win = getWindow();
+            WindowManager.LayoutParams winParams = win.getAttributes();
+            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+            winParams.flags |= bits;
+            win.setAttributes(winParams);
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintResource(resId);
+            tintManager.setStatusBarDarkMode(true, this);
+        }
     }
 
     /**
@@ -84,7 +100,6 @@ public abstract class BaseActivity<CV extends View, M, V extends MvpLceView<M>, 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        NetworkStateReceiver.unRegisterNetworkStateReceiver(this);
         AppManager.getAppManager().finishActivity(this);
     }
 
