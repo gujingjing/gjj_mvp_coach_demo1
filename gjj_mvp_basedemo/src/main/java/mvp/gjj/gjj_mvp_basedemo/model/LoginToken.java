@@ -7,8 +7,8 @@ import java.io.Serializable;
  * 邮箱：support@1yd.me
  */
 public class LoginToken implements Serializable {
-    public String access_token;
-    public String token_type;
+    public String access_token="";
+    public String token_type="";
 
 
     @Override

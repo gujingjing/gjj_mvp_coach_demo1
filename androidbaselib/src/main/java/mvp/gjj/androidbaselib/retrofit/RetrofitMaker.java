@@ -43,28 +43,9 @@ public class RetrofitMaker {
      */
     public static OkHttpClient initClient(final String token) {
         OkHttpClient client = new OkHttpClient();
-        client.networkInterceptors().add(new Interceptor() {//设置ok的头信息
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-                if (!token.equals("")) {
-                    request=request.newBuilder().addHeader("Authorization", token).build();
-                }
-                LogUtils.e("requestUrl==="+request.urlString());//输出requestUrl
-                LogUtils.e("requestHeader==="+request.headers().toString());//输出requestUrl
-                LogUtils.e("requestBody==="+request.body());//输出request请求内容
-                return chain.proceed(request);
-            }
-        });
-        //TODO 以后可能添加session
-        client.interceptors().add(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Response response = chain.proceed(chain.request());
-                return response;
-            }
-        });
-
+        client.networkInterceptors().add(new NetWorkInterceptor(token));
+        //   设置cookie     http://blog.csdn.net/sbsujjbcy/article/details/46895039
+        //        client.setCookieHandler()
         return client;
     }
 }

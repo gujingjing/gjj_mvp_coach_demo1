@@ -9,6 +9,7 @@ import java.util.List;
 import mvp.gjj.androidbaselib.base.BaseApplication;
 import mvp.gjj.androidbaselib.base.BasePresenter;
 import mvp.gjj.androidbaselib.tools.ToastUtils;
+import mvp.gjj.gjj_mvp_basedemo.model.CoachBean;
 import mvp.gjj.gjj_mvp_basedemo.model.LoginToken;
 import mvp.gjj.gjj_mvp_basedemo.model.MainActivityModel;
 import mvp.gjj.gjj_mvp_basedemo.retrofit.RetrofitManager;
@@ -55,11 +56,23 @@ public class MainActivityPresent extends BasePresenter<MainActivityView> {
             public void onNext(LoginToken loginToken) {
                 MainActivityModel model=new MainActivityModel();
                 model.loginToken=loginToken;
+
                 getView().setData(model);
                 getView().showContent();
 //                getView().showError(new Throwable("测试用的异常"),pullToRefresh);
             }
         });
     }
-
+    /**
+     * retrofit测试
+     */
+    public void retrofitLoadTest(boolean pullToRefresh){
+//        RetrofitManager.retrofitManager.withTokenServices
+    }
+    /**
+     * 登录
+     */
+    public Observable<CoachBean> login(String userName, String pwd){
+        return RetrofitManager.retrofitManager.login(userName,pwd);
+    }
 }
