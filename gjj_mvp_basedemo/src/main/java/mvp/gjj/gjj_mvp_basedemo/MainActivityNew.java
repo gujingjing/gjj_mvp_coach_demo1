@@ -71,7 +71,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);//分支测试3
+        ButterKnife.bind(this);//分支测试4
         try {
             diskLruCacheHelper = new DiskLruCacheHelper(context);
             diskLruCacheHelper.put("gjj==","fdsfdiskLruCacheHelperdsf=====测试");
