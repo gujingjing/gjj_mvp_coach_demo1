@@ -1,4 +1,4 @@
-package mvp.gjj.androidbaselib.view.finishClassView;
+package mvp.gjj.androidbaselib.view.swipClassView;
 
 import android.app.Activity;
 import android.content.Context;

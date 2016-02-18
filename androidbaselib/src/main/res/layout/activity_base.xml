@@ -1,5 +1,5 @@
-<mvp.gjj.androidbaselib.view.finishClassView.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<mvp.gjj.androidbaselib.view.swipClassView.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-</mvp.gjj.androidbaselib.view.finishClassView.SwipeBackLayout>
+</mvp.gjj.androidbaselib.view.swipClassView.SwipeBackLayout>

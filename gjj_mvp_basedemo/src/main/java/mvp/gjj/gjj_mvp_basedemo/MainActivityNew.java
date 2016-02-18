@@ -202,7 +202,7 @@ public class MainActivityNew extends BaseActivity<MyViewPager, MainActivityModel
         getSupportActionBar().setTitle("android-mvpDemo");
         getSupportActionBar().setDisplayShowHomeEnabled(true);   //使左上角图标是否显示
         // 给左上角图标的左边加上一个返回的图标
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

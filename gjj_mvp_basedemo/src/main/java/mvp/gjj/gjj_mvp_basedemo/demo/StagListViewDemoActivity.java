@@ -18,6 +18,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mvp.gjj.androidbaselib.base.BaseActivity;
+import mvp.gjj.androidbaselib.base.SwipeBackActivity;
+import mvp.gjj.androidbaselib.view.swipebackview.SwipeBackLayout;
 import mvp.gjj.gjj_mvp_basedemo.R;
 import mvp.gjj.gjj_mvp_basedemo.model.DemoModel;
 import mvp.gjj.gjj_mvp_basedemo.present.DemoPresent;
@@ -47,7 +49,7 @@ public class StagListViewDemoActivity extends BaseActivity<MaterialRefreshLayout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.countries_list);
         ButterKnife.bind(this);
-
+//        setStateBarColor(mvp.gjj.androidbaselib.R.color.color_blue);
         adapter=new BaseRcvQuickAdapter(this,R.layout.item_recyleview) {
             @Override
             protected void convert(BaseRcvAdapterHelper helper, int position, Object item) {

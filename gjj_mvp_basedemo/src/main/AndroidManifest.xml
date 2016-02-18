@@ -20,6 +20,7 @@
         <activity
             android:name=".MainActivityNew"
             android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,8 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo.StagListViewDemoActivity"/>
-        <activity android:name=".demo.PuBuListViewDemoActivity"/>
+        <activity
+            android:theme="@style/swipeFinishActivityTheme"
+            android:name=".demo.StagListViewDemoActivity"/>
+        <activity
+            android:theme="@style/swipeFinishActivityTheme"
+            android:name=".demo.PuBuListViewDemoActivity"/>
     </application>
 
 </manifest>

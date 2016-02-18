@@ -6,8 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionModeOverlay">true</item>//true 弹出时覆盖部分布局      若 false 则不符盖，将原有布局下移
         <!--<item name="drawerArrowStyle">@style/AppTheme.Base.DrawerArrowToggele</item>-->
+        <item name="android:windowIsTranslucent">true</item>//<!-- 为 Theme 设置透明属性 -->
+        <!--<item name="android:windowBackground">@drawable/splash_bg</item>// &lt;!&ndash; 为 Theme 设置背景图 &ndash;&gt;-->
     </style>
+
     <style name="AppTheme.Base.DrawerArrowToggele" parent="Base.Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/white</item>
     </style>
@@ -19,6 +23,22 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.NoActionBar.Default"/>
+    <style name="AppTheme.NoActionBar.FullScreen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
     <!--主界面下方的布局  -->
     <style name="main_tab_bottom">
         <item name="android:textSize">12sp</item>
@@ -31,5 +51,18 @@
         <item name="android:singleLine">true</item>
         <item name="android:drawablePadding">3dp</item>
         <item name="android:layout_weight">1.0</item>
+    </style>
+    <!-- toolbar菜单样式
+        这里给toolbar单独设置一个theme
+        app:theme="@style/ToolbarTheme"
+    -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+    <!--滑动界面的theam-->
+    <style name="swipeFinishActivityTheme" parent="FullscreenTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparency</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 </resources>
