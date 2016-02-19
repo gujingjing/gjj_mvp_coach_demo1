@@ -19,8 +19,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mvp.gjj.androidbaselib.base.BaseActivity;
-import mvp.gjj.androidbaselib.base.SwipeBackActivity;
-import mvp.gjj.androidbaselib.view.swipebackview.SwipeBackLayout;
 import mvp.gjj.gjj_mvp_basedemo.R;
 import mvp.gjj.gjj_mvp_basedemo.model.DemoModel;
 import mvp.gjj.gjj_mvp_basedemo.present.DemoPresent;
