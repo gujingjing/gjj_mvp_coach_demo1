@@ -5,6 +5,8 @@ import android.content.Context;
 
 import java.util.Stack;
 
+import mvp.gjj.androidbaselib.tools.LogUtils;
+
 /**
  * activity堆栈式管理
  */
@@ -59,10 +61,11 @@ public class AppManager {
      * 结束指定的Activity
      */
     public void finishActivity(Activity activity) {
-        if (activity != null && !activity.isFinishing()) {
+        if (activity != null
+//                && !activity.isFinishing()
+                ) {
             activityStack.remove(activity);
             activity.finish();
-            activity = null;
         }
     }
 

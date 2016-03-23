@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -21,15 +24,22 @@ import mvp.gjj.gjj_mvp_basedemo.model.RecyleModel;
  * 邮箱：Gujj512@163.com
  */
 public class RecyleViewNomalAdapter extends BaseAdapter<RecyleModel> {
+    public RequestManager requestManager;
     public RecyleViewNomalAdapter(Activity mContext) {
         super(mContext);
         this.mContext = mContext;
+        requestManager = Glide.with(mContext);
     }
 
     @Override
     public void onViewShow(BaseViewHolder viewHolde, int i, List<RecyleModel> mItemDataList) {
         ViewHolder viewHolder=(ViewHolder)viewHolde;
         viewHolder.textView.setText(mItemDataList.get(i).text);
+//        requestManager.load("")
+//                .placeholder(R.mipmap.head1)//加载中显示的图片
+////                .error(R.mipmap.head1)//加载错误显示的图片;
+////                .transform(new GlideCircleTransform(mActivity))
+//                .into(viewHolder.profileImage);
     }
 
     @Override

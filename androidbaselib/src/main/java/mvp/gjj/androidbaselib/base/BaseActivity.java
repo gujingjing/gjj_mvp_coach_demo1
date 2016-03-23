@@ -88,20 +88,20 @@ public abstract class BaseActivity<CV extends View, M, V extends MvpLceView<M>, 
      * 当没有网络的时候
      */
     public void onDisConnect() {
-        ToastUtils.setToastShot(context, "暂时没有网络,请稍后重试");
+        ToastUtils.setToastShot(getApplicationContext(), "暂时没有网络,请稍后重试");
     }
 
     /**
      * 当网络连接的时候
      */
     public void onConnect(NetWorkUtil.NetType type) {
-        ToastUtils.setToastShot(context, "网络已经连接");
+        ToastUtils.setToastShot(getApplicationContext(), "网络已经连接");
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
+        super.onDestroy();
     }
 
     /**
